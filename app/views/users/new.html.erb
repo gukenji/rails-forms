@@ -1,0 +1,41 @@
+<h1>Formulário HTML</h1>
+<%# <form action="/users" method="post" accept-charset="UTF-8">
+    <label for="user[email]">E-mail:</label>
+    <input type="text" id="email" name="user[email]">
+    <label for="user[username]">Username:</label>
+    <input type="text" id="username" name="user[username]">
+    <label for="user[password]">Password:</label>
+    <input type="password" id="password" name="user[password]">
+    <input type="submit" value="Submit"> 
+</form> %>
+
+<!--
+<%= form_tag ("/users") do %>
+    <%= label_tag(:email, "E-mail:") %>
+    <%= text_field_tag(:email) %>
+    <%= label_tag(:username, "Username:") %>
+    <%= text_field_tag(:username) %>
+    <%= label_tag(:password, "Password:") %>
+    <%= password_field_tag(:password) %>
+    <%= submit_tag("Submit") %>
+<% end %>
+-->
+
+<%= form_with model: @user do |form| %>
+    <%= form.label :email, "Digite seu e-mail:"%>
+    <%= form.text_field :email, placeholder: "teste@gmail.com" %>
+    <%= form.label :username, "Digite seu usuário:"%>
+    <%= form.text_field :username %>
+    <%= form.label :password, "Digite sua senha:"%>
+    <%= form.password_field :password %>
+    <%= form.submit %>
+<% end %>
+
+<% if @user.errors.any? %>
+  <h3>Erro ao tentar salvar!</h3>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li> 
+    <% end %>
+  </ul>
+<% end %>

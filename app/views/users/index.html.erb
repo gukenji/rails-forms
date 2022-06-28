@@ -1,0 +1,8 @@
+<h1>Lista de usuários<h1>
+<% @users.each do |user| %>
+    <ul>    
+        <li><%= user.username %></li>
+        <li><%= link_to "Edit", edit_user_path(user) %>
+    </ul>
+<% end%>
+    <p><%= link_to "Create New User", new_user_path %> </p>
